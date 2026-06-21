@@ -1,1 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MKV Online Player</title>
+
+<style>
+body{
+    margin:0;
+    background:#111;
+    color:white;
+    font-family:Arial,sans-serif;
+}
+
+.topbar{
+    padding:10px;
+    background:#222;
+    display:flex;
+    gap:10px;
+}
+
+input{
+    flex:1;
+    padding:10px;
+    border:none;
+    border-radius:5px;
+}
+
+button{
+    padding:10px 15px;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+#player{
+    width:100%;
+    height:calc(100vh - 60px);
+    background:black;
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+    <input type="text" id="videoUrl"
+           placeholder="Enter MKV URL here">
+    <button onclick="loadVideo()">Load URL</button>
+    <button onclick="toggleFullscreen()">Fullscreen</button>
+</div>
+
+<video id="player" controls>
+    Your browser does not support video playback.
+</video>
+
+<script>
+const player = document.getElementById("player");
+
+function loadVideo(){
+    const url = document.getElementById("videoUrl").value.trim();
+
+    if(!url){
+        alert("Enter a video URL");
+        return;
+    }
+
+    player.src = url;
+    player.load();
+    player.play();
+}
+
+function toggleFullscreen(){
+    if(player.requestFullscreen){
+        player.requestFullscreen();
+    }
+}
+</script>
+
+</body>
+</html>
 
